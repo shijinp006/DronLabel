@@ -13,10 +13,10 @@ interface Product {
 interface ProductCardProps extends Product {}
 
 // ProductRow props
-interface ProductRowProps {
-  title: string;
-  items: Product[];
-}
+// interface ProductRowProps {
+//   title: string;
+//   items: Product[];
+// }
 
 // ProductRow state and refs
 // interface ProductRowState {
@@ -97,14 +97,14 @@ const ProductCard: FC<ProductCardProps> = ({ img, name, category, price }) => {
   );
 };
 
-const ProductRow: FC<ProductRowProps> = ({ title, items }) => {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const [page, setPage] = useState<number>(0);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
+const ProductRow: FC<any> = ({ title, items }) => {
+  const trackRef = useRef<any>(null);
+  const rafRef = useRef<any | null>(null);
+  const [page, setPage] = useState<any>(0);
+  const [isPaused, setIsPaused] = useState<any>(false);
 
   // How many cards per page based on screen
-  const getPerPage = (): number => {
+  const getPerPage = (): any => {
     if (typeof window === "undefined") return 3;
     if (window.innerWidth < 640) return 1;  // Mobile: 1 image
     if (window.innerWidth < 1024) return 2; // Tablet: 2 images
@@ -115,7 +115,7 @@ const ProductRow: FC<ProductRowProps> = ({ title, items }) => {
   const totalPages = Math.ceil(items.length / perPage);
 
   // Smooth animate scrollLeft
-  const animateTo = (targetLeft: number, duration: number = 650): void => {
+  const animateTo = (targetLeft: any, duration: any = 650): any => {
     const el = trackRef.current;
     if (!el) return;
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -124,10 +124,10 @@ const ProductRow: FC<ProductRowProps> = ({ title, items }) => {
     const distance = targetLeft - startLeft;
     const startTime = performance.now();
 
-    const ease = (t: number): number =>
+    const ease = (t: any): any =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-    const step = (now: number): void => {
+    const step = (now: any): any => {
       const progress = Math.min((now - startTime) / duration, 1);
       el.scrollLeft = startLeft + distance * ease(progress);
       if (progress < 1) rafRef.current = requestAnimationFrame(step);
@@ -137,14 +137,14 @@ const ProductRow: FC<ProductRowProps> = ({ title, items }) => {
   };
 
   // Scroll track to match current page
-  const scrollToPage = (p: number): void => {
+  const scrollToPage = (p: any): any => {
     const el = trackRef.current;
     if (!el) return;
     const pageWidth = el.clientWidth;
     animateTo(p * pageWidth);
   };
 
-  const goTo = (p: number): void => {
+  const goTo = (p: any): any => {
     const next = (p + totalPages) % totalPages;
     setPage(next);
     scrollToPage(next);
@@ -154,7 +154,7 @@ const ProductRow: FC<ProductRowProps> = ({ title, items }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (isPaused) return;
-      setPage((prev) => {
+      setPage((prev :any) => {
         const next = (prev + 1) % totalPages;
         scrollToPage(next);
         return next;
@@ -197,7 +197,7 @@ const ProductRow: FC<ProductRowProps> = ({ title, items }) => {
           >
             {/* Inner flex: all cards laid out side by side */}
             <div className="flex gap-3 sm:gap-4">
-              {items.map((item, i) => (
+              {items.map((item :any, i :any) => (
                 <div
                   key={i}
                   className="flex-none w-[calc(100%-12px)] sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]"
