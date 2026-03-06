@@ -3,10 +3,10 @@ import type { FC } from "react";
 
 // Product interface
 interface Product {
-  img: string;
-  name: string;
-  category: string;
-  price: string;
+  img: any;
+  name: any;
+  category: any;
+  price: any;
 }
 
 // ProductCard props
