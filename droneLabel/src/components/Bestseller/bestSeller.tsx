@@ -19,12 +19,12 @@ interface ProductRowProps {
 }
 
 // ProductRow state and refs
-interface ProductRowState {
-  page: number;
-  isPaused: boolean;
-  perPage: number;
-  totalPages: number;
-}
+// interface ProductRowState {
+//   page: number;
+//   isPaused: boolean;
+//   perPage: number;
+//   totalPages: number;
+// }
 
 const BEST_SELLERS: Product[] = [
   { img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=85", name: "Starry Night", category: "Printed Shirt", price: "₹1,499" },
@@ -54,7 +54,7 @@ const ProductCard: FC<ProductCardProps> = ({ img, name, category, price }) => {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Image: Taller on mobile, scales based on display count */}
-      <div className="relative w-full overflow-hidden rounded-lg sm:rounded-xl bg-[#e8e2d8] aspect-[3/4] sm:aspect-square lg:aspect-[4/5]">
+      <div className="relative w-full overflow-hidden rounded-lg sm:rounded-xl bg-[#e8e2d8] aspect-3/4 sm:aspect-square lg:aspect-[4/5]">
         <img
           src={img}
           alt={name}
