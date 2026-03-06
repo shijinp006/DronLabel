@@ -44,8 +44,8 @@ const NEW_ARRIVALS: Product[] = [
   { img: "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=600&q=85", name: "Kerala Originals Tee", category: "Printed T-shirt", price: "₹799" },
 ];
 
-const ProductCard: FC<ProductCardProps> = ({ img, name, category, price }) => {
-  const [hovered, setHovered] = useState<boolean>(false);
+const ProductCard: FC<ProductCardProps> = ({ img , name, category, price } :any) => {
+  const [hovered, setHovered] = useState<any>(false);
 
   return (
     <div
